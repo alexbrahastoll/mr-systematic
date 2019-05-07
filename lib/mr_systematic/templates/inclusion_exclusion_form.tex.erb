@@ -1,0 +1,59 @@
+Inclusion / exclusion form
+
+Source: <%= data[:source] %>
+Search date: <%= data[:search_date] %>
+Search string: <%= data[:search_string] %>
+Studies publication year range: <%= "#{data[:studies_start_year]} - #{data[:studies_end_year]}" %>
+Studies found: <%= bibtex.length %>
+Studies included: <%= data[:included_studies].length %>
+Studies excluded: <%= data[:excluded_studies].length %>
+
+Inclusion criteria
+
+<% data[:in_ex_criteria][:inclusion].keys.each_with_index do |item, i| %>
+  <%= "i#{i + 1}: #{data[:in_ex_criteria][:inclusion][item]}" %>
+
+<% end %>
+
+Exclusion criteria
+
+<% data[:in_ex_criteria][:exclusion].keys.each_with_index do |item, i| %>
+  <%= "e#{i + 1}: #{data[:in_ex_criteria][:exclusion][item]}" %>
+
+<% end %>
+
+Results
+
+<% bibtex.each do |entry| %>
+  Article name: <%= entry[:title] %>
+  Authors: <%= entry[:author] %>
+  Publication year: <%= entry[:year] %>
+  Publication venue: <%= entry[:journal] %>
+
+<% end %>
+
+Included studies
+
+<% data[:included_studies].each do |entry| %>
+  Article name: <%= entry[:title] %>
+  Authors: <%= entry[:author] %>
+  Publication year: <%= entry[:year] %>
+  Publication venue: <%= entry[:journal] %>
+  Inclusion criteria: <%= entry[:inclusion_criteria] %>
+  Exclusion criteria: <%= entry[:exclusion_criteria] %>
+  Result: <%= entry[:in_ex_result] %>
+
+<% end %>
+
+Excluded studies
+
+<% data[:excluded_studies].each do |entry| %>
+  Article name: <%= entry[:title] %>
+  Authors: <%= entry[:author] %>
+  Publication year: <%= entry[:year] %>
+  Publication venue: <%= entry[:journal] %>
+  Inclusion criteria: <%= entry[:inclusion_criteria] %>
+  Exclusion criteria: <%= entry[:exclusion_criteria] %>
+  Result: <%= entry[:in_ex_result] %>
+
+<% end %>

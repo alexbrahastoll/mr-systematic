@@ -12,3 +12,10 @@
 
 # Example .bib file
 example.bib
+
+# Example inclusion / exclusion form generation
+/bin/build_forms
+/out
+
+# ASDF version manager file
+.tool-versions
