@@ -1,0 +1,15 @@
+Included studies abstracts
+
+<% data[:included_studies].each do |entry| %>
+  ---
+
+  Article name: <%= entry[:title] %>
+  Authors: <%= entry[:author] %>
+  Publication year: <%= entry[:year] %>
+  Publication venue: <%= entry[:journal] %>
+
+  Abstract
+
+  <%= entry[:abstract] %>
+  
+<% end %>

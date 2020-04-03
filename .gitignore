@@ -12,6 +12,7 @@
 
 # Example .bib file
 example.bib
+scopus.bib
 
 # Example inclusion / exclusion form generation
 /bin/build_forms
