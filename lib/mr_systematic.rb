@@ -2,6 +2,7 @@ require 'bibtex'
 require 'erb'
 require 'fileutils'
 require 'mr_systematic/version'
+require 'mr_systematic/util'
 require 'mr_systematic/parser'
 require 'mr_systematic/criteria_evaluator'
 

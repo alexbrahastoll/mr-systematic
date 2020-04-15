@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'mr_systematic'
+
+MrSystematic::Util.filter_bibtex('scopus.bib', 'ieee.bib')
