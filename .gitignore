@@ -10,12 +10,7 @@
 # rspec failure tracking
 .rspec_status
 
-# Example .bib file
-example.bib
-scopus.bib
-
-# Example inclusion / exclusion form generation
-/bin/build_forms
+# Articles included / excluded output
 /out
 
 # ASDF version manager file

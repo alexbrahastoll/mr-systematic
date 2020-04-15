@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'mr_systematic'
+
+in_ex_criteria = {
+  inclusion: {
+    full_version: 'The authors of this systematic review must have access to the full version of the study.',
+    recent: <<-IN_CRITERIA_RECENT.gsub(/^ +/, '').strip,
+      Only studies published after 2010 will be appraised. This year was chosen as the starting point
+      because it is the creation year of a popular REST API specification language (OpenAPI).
+    IN_CRITERIA_RECENT
+    sec_or_qual_or_test_gen: <<-IN_CRITERIA_SEC_OR_QUAL_OR_TEST_GEN.gsub(/^ +/, '').strip,
+      Only studies that propose techniques for evaluating the quality or security of an API or introduce
+      techniques for automatically generating tests for an API will be considered.
+    IN_CRITERIA_SEC_OR_QUAL_OR_TEST_GEN
+    rest_api: 'To be considered, studies must involve APIs that follow the REST architectural style.',
+    api_spec: 'Evaluation or test generation must be done by leveraging some type of specification of the API.',
+    cs_journal: 'The study must be published in a channel directly related with Computer Science.'
+  },
+  exclusion: {
+    preview_only: 'The authors of this systematic review did not have access to the full version of the study.',
+    old: 'Studies published before 2010 will not be considered.',
+    irrelevant_purpose: <<-EX_CRITERIA_IRRELEVANT_PURPOSE.gsub(/^ +/, '').strip,
+      Works that do not propose techniques for evaluating the quality or security of an API or introduce
+      techniques for automatically generating tests for an API will not be included.
+    EX_CRITERIA_IRRELEVANT_PURPOSE
+    not_rest_api: 'Studies that involve APIs that do not follow the REST architectural style will be ignored.',
+    not_api_spec: 'Studies that do not use some kind of API specification will not be considered.',
+    not_cs_journal: 'Works that are not published in a channel directly related to Computer Science will be ignored.'
+  }
+}
+
+scopus = {
+  in_ex_criteria: in_ex_criteria,
+  source: 'SCOPUS',
+  search_date: '09/05/2019',
+  search_string: '(("rest api" OR "restful api") AND (spec OR specification)) OR (("rest api" OR "restful api") AND (spec OR especificação))',
+  studies_start_year: '2010',
+  studies_end_year: '2019'
+}
+scopus_parser = MrSystematic::Parser.new('scopus.bib')
+scopus_parser.render('inclusion_exclusion_form', 'out', scopus)
+scopus_parser.render('included_abstract', 'out_included_abstract', scopus)
+
+ieee = {
+  in_ex_criteria: in_ex_criteria,
+  source: 'IEEE Xplore',
+  search_date: '02/04/2020',
+  search_string: '("All Metadata":"rest* api" AND ("All Metadata":spec* OR "All Metadata":especificação))',
+  studies_start_year: '2010',
+  studies_end_year: '2020'
+}
+ieee_parser = MrSystematic::Parser.new('ieee_filtered_processed.bib')
+ieee_parser.render('inclusion_exclusion_form', 'out_ieee', ieee)
+ieee_parser.render('included_abstract', 'out_included_abstract_ieee', ieee)
