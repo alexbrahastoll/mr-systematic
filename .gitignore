@@ -15,3 +15,6 @@
 
 # ASDF version manager file
 .tool-versions
+
+# MacOS metadata files
+.DS_Store
