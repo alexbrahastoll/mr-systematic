@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'mr_systematic'
+
+# MrSystematic::Util.classify_known_bibtex_entries(['bibliography/scopus.bib', 'bibliography/ieee_filtered_processed.bib'], 'bibliography/acm_15_04_2020.bib')
+
+# MrSystematic::Util.classify_known_bibtex_entries(['bibliography/scopus.bib', 'bibliography/ieee_filtered_processed.bib', 'bibliography/acm_15_04_2020_enhanced_processed.bib'], 'bibliography/ieee_15_04_2020.bib')
+
+MrSystematic::Util.classify_known_bibtex_entries(['bibliography/scopus.bib', 'bibliography/ieee_15_04_2020_enhanced_processed.bib', 'bibliography/acm_15_04_2020_enhanced_processed.bib'], 'bibliography/scopus_15_04_2020.bib')
