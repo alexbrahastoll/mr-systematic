@@ -34,23 +34,35 @@ in_ex_criteria = {
 scopus = {
   in_ex_criteria: in_ex_criteria,
   source: 'SCOPUS',
-  search_date: '09/05/2019',
-  search_string: '(("rest api" OR "restful api") AND (spec OR specification)) OR (("rest api" OR "restful api") AND (spec OR especificação))',
+  search_date: '15/04/2020',
+  search_string: 'TITLE-ABS-KEY ( "rest api"  AND  spec )  OR  TITLE-ABS-KEY ( "rest api"  AND  specification )  OR  TITLE-ABS-KEY ( "restful api"  AND  spec )  OR  TITLE-ABS-KEY ( "restful api"  AND  specification )',
   studies_start_year: '2010',
-  studies_end_year: '2019'
+  studies_end_year: '2020'
 }
-scopus_parser = MrSystematic::Parser.new('scopus.bib')
-scopus_parser.render('inclusion_exclusion_form', 'out', scopus)
-scopus_parser.render('included_abstract', 'out_included_abstract', scopus)
+scopus_parser = MrSystematic::Parser.new('bibliography/scopus_15_04_2020_enhanced_processed.bib')
+scopus_parser.render('inclusion_exclusion_form', 'out_scopus', scopus)
+scopus_parser.render('included_abstract', 'out_included_abstract_scopus', scopus)
 
 ieee = {
   in_ex_criteria: in_ex_criteria,
   source: 'IEEE Xplore',
-  search_date: '02/04/2020',
-  search_string: '("All Metadata":"rest* api" AND ("All Metadata":spec* OR "All Metadata":especificação))',
+  search_date: '15/04/2020',
+  search_string: '(("All Metadata":"rest api" AND spec) OR ("All Metadata":"rest api" AND specification) OR ("All Metadata":"restful api" AND spec) OR ("All Metadata":"restful api" AND specification))',
   studies_start_year: '2010',
   studies_end_year: '2020'
 }
-ieee_parser = MrSystematic::Parser.new('ieee_filtered_processed.bib')
+ieee_parser = MrSystematic::Parser.new('bibliography/ieee_15_04_2020_enhanced_processed.bib')
 ieee_parser.render('inclusion_exclusion_form', 'out_ieee', ieee)
 ieee_parser.render('included_abstract', 'out_included_abstract_ieee', ieee)
+
+acm = {
+  in_ex_criteria: in_ex_criteria,
+  source: 'ACM Digital Library',
+  search_date: '15/04/2020',
+  search_string: 'Title:(("rest api" AND spec) OR ("rest api" AND specification) OR ("restful api" AND spec) OR ("restful api" AND specification)) OR Abstract:(("rest api" AND spec) OR ("rest api" AND specification) OR ("restful api" AND spec) OR ("restful api" AND specification)) OR Keyword:(("rest api" AND spec) OR ("rest api" AND specification) OR ("restful api" AND spec) OR ("restful api" AND specification))',
+  studies_start_year: '2010',
+  studies_end_year: '2020'
+}
+acm_parser = MrSystematic::Parser.new('bibliography/acm_15_04_2020_enhanced_processed.bib')
+acm_parser.render('inclusion_exclusion_form', 'out_acm', acm)
+acm_parser.render('included_abstract', 'out_included_abstract_acm', acm)
